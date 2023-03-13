@@ -36,33 +36,33 @@
                     <p class="title is-4 mt-4 mr-2 mb-2 ml-2 has-text-centered">City Search</p>
                     <label alt="Search for a city"></label>
                     <!-- input field -->
-                    <input class="input is-primary is-rounded" id="input" type="text" placeholder="City Name"
+                    <input class="input is-primary is-rounded has-text-centered" id="input" type="text" placeholder="City Name"
                     type="text">
                     <!-- submit button -->
                     <input class="button is-primary is-medium is-rounded m-2" type="submit">
                 </div>
                     <!-- placeholder searched city -->
-                    <button class="button is-primary is-outlined" id="searched-cities">Austin</button> 
+                    <button class="button is-primary is-outlined ml-2" id="searched-cities">Austin</button> 
                 
 
             </form>
         </aside>
 
         <!-- weather forecasts -->
-        <div class="column is-9" class="weather-forecasts">
+        <div class="column is-9" id="weather-forecasts">
 
             <!-- current weather -->
-            <section class="container is-widescreen">
-                <h2 class="title is-4 mt-4 mr-2 mb-2 ml-2">Current Forecast:</h2>
-                <div class="notification is-light m-2 mt-3" id="current-weather">
+            <section class="container is-fluid">
+                <h2 class="title is-4 mt-4 mr-2 mb-2 ml-4">Current Forecast:</h2>
+                <div class="notification is-light mt-3 ml-3" id="current-weather">
                 </div>
             </section>
 
             <!-- future weather -->
-            <section id="five-day-forecast">
-                <div class="block">
-                    <h3 class="title is-4 mt-4 mr-2 mb-2 ml-2">Future Forecast:</h3>
-                    <div class="tile is-ancestor is-primary m-1 mt-3">
+            <section class="container is-fluid" id="five-day-forecast">
+                <div>
+                    <h3 class="title is-4 mt-4 mr-2 mb-2 ml-4">Future Forecast:</h3>
+                    <div class="tile is-ancestor is-primary mt-3 ml-1">
                         <div id="day1" class="tile notification is-light m-2 has-text-centered"> Day 1 </div>
                         <div id="day2" class="tile notification is-light m-2 has-text-centered"> Day 2 </div>
                         <div id="day3" class="tile notification is-light m-2 has-text-centered"> Day 3 </div>
