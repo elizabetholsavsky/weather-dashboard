@@ -26,11 +26,19 @@
   
         
 
-
-    <!-- search sidebar with recently searched cities-->
-    <aside>
+<div class="columns">
+     <!-- search sidebar with recently searched cities-->
+    <aside class="column is-one-fifth">
         <form>
-            <input>
+            <br>
+            <label>Search for a city:</label> 
+            <br>
+            <input class="m-2" type="text"> 
+            <br>
+            <input class="button is-primary is-medium is-rounded m-2" type="submit">
+            <br>
+            <!-- placeholder city -->
+            <button class="button is-light is-medium is-fullwidth m-2" class="searchedCity">Austin</button>
         </form>
     </aside>
 
@@ -46,7 +54,8 @@
 
         </section>
     </div>
-
+</div>
+   
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
