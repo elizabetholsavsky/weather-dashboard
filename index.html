@@ -10,52 +10,70 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <!-- bulma css framework-->
+    <!-- bulma css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-  <header>
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <h1 class="title">Weather Dashboard</h1>
+    <!-- header with title -->
+    <header>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <h1 class="title is-2 has-text-centered">Weather Dashboard</h1>
+            </div>
+        </section>
+    </header>
+
+
+    <!-- search sidebar with recently searched cities-->
+    <div class="columns">
+    
+        <aside class="column is-3">
+            <form  class="container">
+                <div class="notification is-light">
+                    <!-- input label -->
+                    <p class="title is-4 mt-4 mr-2 mb-2 ml-2 has-text-centered">City Search</p>
+                    <label alt="Search for a city"></label>
+                    <!-- input field -->
+                    <input class="input is-primary is-rounded" id="input" type="text" placeholder="City Name"
+                    type="text">
+                    <!-- submit button -->
+                    <input class="button is-primary is-medium is-rounded m-2" type="submit">
+                </div>
+                    <!-- placeholder searched city -->
+                    <button class="button is-primary is-outlined" id="searched-cities">Austin</button> 
+                
+
+            </form>
+        </aside>
+
+        <!-- weather forecasts -->
+        <div class="column is-9" class="weather-forecasts">
+
+            <!-- current weather -->
+            <section class="container is-widescreen">
+                <h2 class="title is-4 mt-4 mr-2 mb-2 ml-2">Current Forecast:</h2>
+                <div class="notification is-light m-2 mt-3" id="current-weather">
+                </div>
+            </section>
+
+            <!-- future weather -->
+            <section id="five-day-forecast">
+                <div class="block">
+                    <h3 class="title is-4 mt-4 mr-2 mb-2 ml-2">Future Forecast:</h3>
+                    <div class="tile is-ancestor is-primary m-1 mt-3">
+                        <div id="day1" class="tile notification is-light m-2 has-text-centered"> Day 1 </div>
+                        <div id="day2" class="tile notification is-light m-2 has-text-centered"> Day 2 </div>
+                        <div id="day3" class="tile notification is-light m-2 has-text-centered"> Day 3 </div>
+                        <div id="day4" class="tile notification is-light m-2 has-text-centered"> Day 4 </div>
+                        <div id="day5" class="tile notification is-light m-2 has-text-centered"> Day 5 </div>
+                    </div>
+                </div>
+            </section>
         </div>
-      </section>
-</header>
-  
-        
-
-<div class="columns">
-     <!-- search sidebar with recently searched cities-->
-    <aside class="column is-one-fifth">
-        <form>
-            <br>
-            <label>Search for a city:</label> 
-            <br>
-            <input class="m-2" type="text"> 
-            <br>
-            <input class="button is-primary is-medium is-rounded m-2" type="submit">
-            <br>
-            <!-- placeholder city -->
-            <button class="button is-light is-medium is-fullwidth m-2" class="searchedCity">Austin</button>
-        </form>
-    </aside>
-
-    <!-- weather reports -->
-    <div>
-        <!-- current weather -->
-        <section>
-
-        </section>
-
-        <!-- future weather -->
-        <section>
-
-        </section>
     </div>
-</div>
-   
+
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"

@@ -4,11 +4,18 @@
 
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
-header, aside {
+aside {
     text-align: center;
+} 
+
+#current-weather {
+    background-color: hsla(171, 100%, 41%, 0.479);
 }
 
-.searchedCity {
-    margin: 2rem;
-    width: 5rem;
+#day1, #day2, #day3, #day4, #day5 {
+    background-color: hsla(171, 100%, 41%, 0.253);
+}
+
+#input, #searched-cities {
+    width: 98%;
 }
