@@ -21,5 +21,30 @@ aside {
 } 
 
 .icon {
-    font-size: 4rem;
+    font-size: 2rem;
+}
+
+.five-day-card {
+    background-color: hsla(171, 100%, 41%, 0.253);
+    border-radius: 5px;
+    width: 19%;
+    margin: 1px;
+}
+
+#card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h3 {
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .five-day-card {
+        width: 100%;  
+    }
 }
