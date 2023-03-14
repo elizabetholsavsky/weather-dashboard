@@ -1,25 +1,38 @@
+var apiKey = "f18313f772d233d04e9c8cd53f36eff9";
 var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
-var apiKey = "18313f772d233d04e9c8cd53f36eff9";
+var userCityVal = ""
 
-// function searchCoordinatesApi {
-
-// }
+submitBtn.addEventListener('click', submitBtnEvent);
 
 function submitBtnEvent(event) {
     event.preventDefault();
 
-    var userCityVal = document.getElementById("input").value;
+    var userCityVal = userCity.value;
 
     if (!userCityVal) {
         console.error('Please type a city name.');
         return;
     }
 
-    searchCoordinatesApi(userCity);
+    searchCoordinatesApi(userCityVal);
 }
 
-submitBtn.addEventListener('click', submitBtnEvent)
+function searchCoordinatesApi(userCityVal) {
+    console.log(userCityVal)
+    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=5&appid=" + apiKey
+    // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
+
+    fetch(coordinatesUrl)
+        .then(function (response) {
+            if (!response.ok) {
+                throw response.json();
+            }
+
+            return response.json();
+        })
+        
+}
 
 // grab elements by id and create variables
 
