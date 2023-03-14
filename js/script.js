@@ -27,14 +27,14 @@ function searchCoordinatesApi(userCityVal) {
 
     fetch(coordinatesUrl)
         .then(function (response) {
-            if (!response.ok) {
-                throw response.json();
-            }
-
-            return response.json();
-        })
-        
-}
+        if (response.ok) {
+            response.json();
+        } else {
+            alert("Error: " + response.statusText);
+        }
+        console.log(response);
+        });
+    };
 
 // *********************************************************************************************************************
 
