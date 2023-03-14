@@ -3,6 +3,7 @@ var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
 var userCityVal = ""
 
+// click event to get userCity value
 submitBtn.addEventListener('click', submitBtnEvent);
 
 function submitBtnEvent(event) {
@@ -18,6 +19,7 @@ function submitBtnEvent(event) {
     searchCoordinatesApi(userCityVal);
 }
 
+// coordinate API
 function searchCoordinatesApi(userCityVal) {
     console.log(userCityVal)
     var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=5&appid=" + apiKey
@@ -33,6 +35,8 @@ function searchCoordinatesApi(userCityVal) {
         })
         
 }
+
+// *********************************************************************************************************************
 
 // grab elements by id and create variables
 
