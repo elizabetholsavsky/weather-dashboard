@@ -31,7 +31,7 @@
     
         <aside class="column is-3">
             <form  class="container">
-                <div class="notification is-light">
+                <div class="notification is-light p-2 m-2">
                     <!-- input label -->
                     <p class="title is-4 mt-4 mr-2 mb-2 ml-2 has-text-centered">City Search</p>
                     <label alt="Search for a city"></label>
@@ -42,7 +42,7 @@
                     <input class="button is-primary is-medium is-rounded m-2" type="submit">
                 </div>
                     <!-- placeholder searched city -->
-                    <button class="button is-primary is-outlined ml-2" id="searched-cities">Austin</button> 
+                    <button class="button is-primary is-outlined m-2" id="searched-cities">Austin</button> 
                 
 
             </form>
@@ -53,22 +53,20 @@
 
             <!-- current weather -->
             <section class="container is-fluid">
-                <h2 class="title is-4 mt-4 mr-2 mb-2 ml-4">Current Forecast:</h2>
-                <div class="notification is-light mt-3 ml-3" id="current-weather">
+                <h2 class="title is-4 mt-4 mr-2 mb-2">Current Forecast:</h2>
+                <div class="notification is-light mt-3" id="current-weather">
                 </div>
             </section>
 
             <!-- future weather -->
-            <section class="container is-fluid" id="five-day-forecast">
-                <div>
-                    <h3 class="title is-4 mt-4 mr-2 mb-2 ml-4">Future Forecast:</h3>
-                    <div class="tile is-ancestor is-primary mt-3 ml-1">
-                        <div id="day1" class="tile notification is-light m-2 has-text-centered"> Day 1 </div>
-                        <div id="day2" class="tile notification is-light m-2 has-text-centered"> Day 2 </div>
-                        <div id="day3" class="tile notification is-light m-2 has-text-centered"> Day 3 </div>
-                        <div id="day4" class="tile notification is-light m-2 has-text-centered"> Day 4 </div>
-                        <div id="day5" class="tile notification is-light m-2 has-text-centered"> Day 5 </div>
-                    </div>
+            <section  id="five-day-forecast">
+                <div class="container is-fluid">
+                    <h3 class="title is-4 mt-4 mr-2 mb-2">Future Forecast:</h3>
+                    <div id="day1" class="notification is-light mt-3"></div>
+                    <div id="day2" class="notification is-light mt-3"></div>
+                    <div id="day3" class="notification is-light mt-3"></div>
+                    <div id="day4" class="notification is-light mt-3"></div>
+                    <div id="day5" class="notification is-light mt-3"></div>
                 </div>
             </section>
         </div>
