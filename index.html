@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <!-- bulma css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Weather Dashboard</title>
@@ -31,9 +33,9 @@
     
         <aside class="column is-3">
             <form  class="container">
-                <div class="notification is-light p-2 m-2">
+                <div class="notification is-light p-4 m-2">
                     <!-- input label -->
-                    <p class="title is-4 mt-4 mr-2 mb-2 ml-2 has-text-centered">City Search</p>
+                    <p class="title is-4 m-2 has-text-centered">City Search</p>
                     <label alt="Search for a city"></label>
                     <!-- input field -->
                     <input class="input is-primary is-rounded has-text-centered" id="input" type="text" placeholder="City Name"
@@ -41,8 +43,12 @@
                     <!-- submit button -->
                     <input class="button is-primary is-medium is-rounded m-2" type="submit">
                 </div>
+
+                <div class="container is-fluid">
                     <!-- placeholder searched city -->
-                    <button class="button is-primary is-outlined m-2" id="searched-cities">Austin</button> 
+                    <button class="button is-primary is-outlined" id="searched-cities">Austin</button> 
+                </div>
+                    
                 
 
             </form>
@@ -62,11 +68,27 @@
             <section  id="five-day-forecast">
                 <div class="container is-fluid">
                     <h3 class="title is-4 mt-4 mr-2 mb-2">Future Forecast:</h3>
-                    <div id="day1" class="notification is-light mt-3"></div>
-                    <div id="day2" class="notification is-light mt-3"></div>
-                    <div id="day3" class="notification is-light mt-3"></div>
-                    <div id="day4" class="notification is-light mt-3"></div>
-                    <div id="day5" class="notification is-light mt-3"></div>
+
+                    <div id="day1" class="notification is-light mt-3">
+                        <i class="fa-solid fa-sun icon m-4"></i>
+                    </div>
+
+                    <div id="day2" class="notification is-light mt-3"> 
+                        <i class="fa-solid fa-cloud icon m-4"></i>
+                    </div>
+
+                    <div id="day3" class="notification is-light mt-3">
+                        <i class="fa-solid fa-cloud-sun icon m-4"></i>
+                    </div>
+
+                    <div id="day4" class="notification is-light mt-3">
+                        <i class="fa-solid fa-cloud-showers-heavy icon m-4"></i>
+                    </div>
+                    
+                    <div id="day5" class="notification is-light mt-3">
+                        <i class="fa-sharp fa-solid fa-cloud-bolt icon m-4"></i>
+                    </div>
+                    
                 </div>
             </section>
         </div>
