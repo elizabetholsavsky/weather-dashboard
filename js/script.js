@@ -1,4 +1,25 @@
+var userCity = document.getElementById("input");
+var submitBtn = document.getElementById("submit-btn");
 var apiKey = "18313f772d233d04e9c8cd53f36eff9";
+
+// function searchCoordinatesApi {
+
+// }
+
+function submitBtnEvent(event) {
+    event.preventDefault();
+
+    var userCityVal = document.getElementById("input").value;
+
+    if (!userCityVal) {
+        console.error('Please type a city name.');
+        return;
+    }
+
+    searchCoordinatesApi(userCity);
+}
+
+submitBtn.addEventListener('click', submitBtnEvent)
 
 // grab elements by id and create variables
 
@@ -25,18 +46,18 @@ var apiKey = "18313f772d233d04e9c8cd53f36eff9";
 // save to local storage, accessible though appended button under search bar
 
 
-/*
-OPEN WEATHER API DOC NOTES 
-https://openweathermap.org/
 
-****Weather API call****
-api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+// OPEN WEATHER API DOC NOTES 
+// https://openweathermap.org/
 
-ex. api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
+// ****Weather API call****
+// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
-****Coordinates API call****
-http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// ex. api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid={API key}
 
-ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
+// ****Coordinates API call****
+// http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
-/*
+// ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
+
+// /*
