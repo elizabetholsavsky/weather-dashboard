@@ -1,9 +1,10 @@
-const APIKEY = "f18313f772d233d04e9c8cd53f36eff9";
+const API_KEY = "f18313f772d233d04e9c8cd53f36eff9";
 var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
-var userCityVal = ""
+var cityNameDate = document.getElementById("city-name-date");
 
 // click event to get userCity value
+
 submitBtn.addEventListener('click', submitBtnEvent);
 
 function submitBtnEvent(event) {
@@ -20,9 +21,10 @@ function submitBtnEvent(event) {
 }
 
 // coordinate API
+
 function searchCoordinatesApi(userCityVal) {
     // console.log(userCityVal)
-    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + APIKEY
+    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + API_KEY
     // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
     fetch(coordinatesUrl)
@@ -30,6 +32,13 @@ function searchCoordinatesApi(userCityVal) {
 
         .then(data => {
             // console.log(data);
+            // current conditions to searched city and date
+            let cityName = (data[0].name);
+            let cityDate = (dayjs().format("MMMM D, YYYY"));
+            
+            $(cityNameDate).text(cityName + "- " + cityDate);
+
+            // set lat and lon, round to hundredths place
             let lat = data[0].lat.toFixed(2);
             let lon = data[0].lon.toFixed(2);
         // console.log(lat, lon);
@@ -42,18 +51,26 @@ function searchCoordinatesApi(userCityVal) {
 };
 
 // weather API
+
 function searchWeatherApi(lat,lon) {
     // console.log(lat,lon);
-    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY
+    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY
     // ex. api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
     fetch(weatherUrl)
     .then(response => response.json())
 
     .then(data => {
-        console.log(data);
+        // console.log(data);
+        showCurrentConditions(data);
     });
 };
+
+function showCurrentConditions(data) {
+    console.log(data);
+}
+
+
 
 
 
