@@ -3,6 +3,7 @@ var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
 var cityNameDateText = document.getElementById("city-name-date");
 var currentWeatherText = document.getElementById("current-weather");
+
 // click event to get userCity value
 
 submitBtn.addEventListener('click', submitBtnEvent);
@@ -32,12 +33,7 @@ function searchCoordinatesApi(userCityVal) {
 
         .then(data => {
             // console.log(data);
-            // current conditions to searched city and date
-            let cityName = (data[0].name);
-            let cityDate = (dayjs().format("MMMM D, YYYY"));
-            
-            $(cityNameDateText).text(cityName + "- " + cityDate);
-
+    
             // set lat and lon, round to hundredths place
             let lat = data[0].lat.toFixed(2);
             let lon = data[0].lon.toFixed(2);
@@ -68,27 +64,58 @@ function searchWeatherApi(lat,lon) {
 
 function showCurrentConditions(data) {
     console.log(data);
+    
+    // set city name and date
+    let cityName = data.city.name;
+    let cityDate = (dayjs().format("MMMM D, YYYY"));
+            
+    $(cityNameDateText).text(cityName + "- " + cityDate);
 
     let weatherIcon = data.list[0].weather[0].icon;
     let weatherIconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
     let temperature = data.list[0].main.temp;
     let humidity = data.list[0].main.humidity;
     let windSpeed = data.list[0].wind.speed;
-    // console.log("icon " + weatherIcon);
-    // console.log("temp " + temperature);
-    // console.log("humidity " + humidity);
-    // console.log("speed " + windSpeed);
-
+ 
     var currentWeatherIcon = '<img src="' + weatherIconUrl +'">'
-    var currentTemperature = '<p>Temperature: ' + temperature + '</p>';
-    var currentHumidity = '<p>Humidity: ' + humidity + '</p>';
-    var currentWindSpeed = '<p>Wind Speed: ' + windSpeed + '</p>';
-    var currentWeatherUpdate = currentWeatherIcon + currentTemperature + currentHumidity + currentWindSpeed;
+    var currentTemperature = '<p>Temperature: ' + temperature + ' ℉</p>';
+    var currentHumidity = '<p>Humidity: ' + humidity + '%</p>';
+    var currentWindSpeed = '<p>Wind Speed: ' + windSpeed + ' mph</p>';
+    var currentWeatherReport = currentWeatherIcon + currentTemperature + currentHumidity + currentWindSpeed;
 
-    currentWeatherText.innerHTML = currentWeatherUpdate;
+    currentWeatherText.innerHTML = currentWeatherReport;
 
+    //display five day forecast
+
+    function displayFiveDayForecast() {
+        for (var i = 0; i < data.list.length; i += 8) {
+            let iDate = data.list[i].dt_txt.substring(0, 10);
+            let iWeatherIcon = data.list[i].weather[0].icon;
+            let iWeatherIconUrl = "https://openweathermap.org/img/wn/" + iWeatherIcon + "@2x.png";
+            let iTemperature = data.list[i].main.temp;
+            let iHumidity = data.list[i].main.humidity;
+            let iWindSpeed = data.list[i].wind.speed;
+            
+            var futureDate = iDate;
+            var futureWeatherIcon = '<img src="' + iWeatherIconUrl +'">';
+            var futureTemperature = '<p>Temperature: ' + iTemperature + ' ℉</p>';
+            var futureHumidity = '<p>Humidity: ' + iHumidity + '%</p>';
+            var futureWindSpeed = '<p>Wind Speed: ' + iWindSpeed + ' mph</p>';
+            var fiveDayForecast = futureDate + futureWeatherIcon + futureTemperature + futureHumidity + futureWindSpeed;
+            console.log(fiveDayForecast);
+        }
+    };
+
+    displayFiveDayForecast();
+
+    // save to local storage
+
+    function saveCitySearch() {
+    localStorage.setItem(cityName, currentWeatherReport);
+    var storedCities = localStorage.getItem(cityName)
+    // console.log(storedCities);
+    }
 }
-
 
 
 
