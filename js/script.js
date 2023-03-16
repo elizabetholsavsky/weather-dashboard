@@ -26,15 +26,11 @@ function searchCoordinatesApi(userCityVal) {
     // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
     fetch(coordinatesUrl)
-        .then(function (response) {
-        if (response.ok) {
-            response.json();
-        } else {
-            alert("Error: " + response.statusText);
-        }
-        console.log(response);
-        });
-    };
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        };
 
 // *********************************************************************************************************************
 
