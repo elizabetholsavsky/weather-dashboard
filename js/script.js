@@ -22,7 +22,7 @@ function submitBtnEvent(event) {
 // coordinate API
 function searchCoordinatesApi(userCityVal) {
     console.log(userCityVal)
-    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=5&appid=" + apiKey
+    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + apiKey
     // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
     fetch(coordinatesUrl)
@@ -30,6 +30,9 @@ function searchCoordinatesApi(userCityVal) {
         .then(data => {
             console.log(data);
         })
+        .catch(function (error) {
+            alert('There has been an error. Please try again.')
+        });
         };
 
 // *********************************************************************************************************************
