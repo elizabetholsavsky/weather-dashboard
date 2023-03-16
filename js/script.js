@@ -1,4 +1,4 @@
-var apiKey = "f18313f772d233d04e9c8cd53f36eff9";
+const APIKEY = "f18313f772d233d04e9c8cd53f36eff9";
 var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
 var userCityVal = ""
@@ -22,27 +22,40 @@ function submitBtnEvent(event) {
 // coordinate API
 function searchCoordinatesApi(userCityVal) {
     // console.log(userCityVal)
-    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + apiKey
+    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + APIKEY
     // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
 
     fetch(coordinatesUrl)
         .then(response => response.json())
 
         .then(data => {
-            console.log(data);
+            // console.log(data);
             let lat = data[0].lat.toFixed(2);
             let lon = data[0].lon.toFixed(2);
-        console.log(lat);
-        console.log(lon);
-        // searchWeatherApi(lat,lon);
+        // console.log(lat, lon);
+        searchWeatherApi(lat,lon);
         })
 
         // .catch(function (error) {
         //     alert('There has been an error. Please try again.')
         // });
-        };
+};
 
-// lat and long variables 
+// weather API
+function searchWeatherApi(lat,lon) {
+    // console.log(lat,lon);
+    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKEY
+    // ex. api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+    fetch(weatherUrl)
+    .then(response => response.json())
+
+    .then(data => {
+        console.log(data);
+    });
+};
+
+
 
 // *********************************************************************************************************************
 
