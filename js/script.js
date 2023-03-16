@@ -70,15 +70,22 @@ function showCurrentConditions(data) {
     console.log(data);
 
     let weatherIcon = data.list[0].weather[0].icon;
+    let weatherIconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
     let temperature = data.list[0].main.temp;
     let humidity = data.list[0].main.humidity;
     let windSpeed = data.list[0].wind.speed;
-    console.log("icon " + weatherIcon);
-    console.log("temp " + temperature);
-    console.log("humidity " + humidity);
-    console.log("speed " + windSpeed);
+    // console.log("icon " + weatherIcon);
+    // console.log("temp " + temperature);
+    // console.log("humidity " + humidity);
+    // console.log("speed " + windSpeed);
 
-    // $(currentWeatherText).text();
+    var currentWeatherIcon = '<img src="' + weatherIconUrl +'">'
+    var currentTemperature = '<p>Temperature: ' + temperature + '</p>';
+    var currentHumidity = '<p>Humidity: ' + humidity + '</p>';
+    var currentWindSpeed = '<p>Wind Speed: ' + windSpeed + '</p>';
+    var currentWeatherUpdate = currentWeatherIcon + currentTemperature + currentHumidity + currentWindSpeed;
+
+    currentWeatherText.innerHTML = currentWeatherUpdate;
 
 }
 
