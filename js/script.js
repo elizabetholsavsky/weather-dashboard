@@ -1,8 +1,8 @@
 const API_KEY = "f18313f772d233d04e9c8cd53f36eff9";
 var userCity = document.getElementById("input");
 var submitBtn = document.getElementById("submit-btn");
-var cityNameDate = document.getElementById("city-name-date");
-
+var cityNameDateText = document.getElementById("city-name-date");
+var currentWeatherText = document.getElementById("current-weather");
 // click event to get userCity value
 
 submitBtn.addEventListener('click', submitBtnEvent);
@@ -36,7 +36,7 @@ function searchCoordinatesApi(userCityVal) {
             let cityName = (data[0].name);
             let cityDate = (dayjs().format("MMMM D, YYYY"));
             
-            $(cityNameDate).text(cityName + "- " + cityDate);
+            $(cityNameDateText).text(cityName + "- " + cityDate);
 
             // set lat and lon, round to hundredths place
             let lat = data[0].lat.toFixed(2);
@@ -54,7 +54,7 @@ function searchCoordinatesApi(userCityVal) {
 
 function searchWeatherApi(lat,lon) {
     // console.log(lat,lon);
-    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY
+    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=imperial"
     // ex. api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 
     fetch(weatherUrl)
@@ -68,6 +68,18 @@ function searchWeatherApi(lat,lon) {
 
 function showCurrentConditions(data) {
     console.log(data);
+
+    let weatherIcon = data.list[0].weather[0].icon;
+    let temperature = data.list[0].main.temp;
+    let humidity = data.list[0].main.humidity;
+    let windSpeed = data.list[0].wind.speed;
+    console.log("icon " + weatherIcon);
+    console.log("temp " + temperature);
+    console.log("humidity " + humidity);
+    console.log("speed " + windSpeed);
+
+    // $(currentWeatherText).text();
+
 }
 
 
@@ -114,5 +126,3 @@ function showCurrentConditions(data) {
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 // ex. http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid={API key}
-
-// /*
