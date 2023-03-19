@@ -12,8 +12,9 @@ aside {
     background-color: hsla(171, 100%, 41%, 0.479);
 }
 
-#searched-cities {
+.searched-cities-btn {
     width: 100%;
+    margin: 0.5rem;
 } 
 
 .icon {
@@ -21,26 +22,33 @@ aside {
 }
 
 .five-day-card {
-    background-color: hsla(171, 100%, 41%, 0.253);
-    border-radius: 5px;
-    width: 19%;
-    margin: 1px;
-}
-
-#card-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    background-color: hsla(171, 100%, 41%, 0.253);
+    border-radius: 5px;
+    width: auto;
+    margin: 1px;
+}
+
+.five-day-text {
+    min-width: 165px;
+    padding: 5px;
 }
 
 h3 {
     width: 100%;
 }
 
-@media screen and (max-width: 1000px) {
-    .five-day-card {
+.fontAwesome {
+    font-family: 'poppins', FontAwesome, sans-serif;
+    }
+
+@media screen and (max-width: 1270px) {
+    .five-day-text {
+        display: block;
         width: 100%;  
     }
 }
