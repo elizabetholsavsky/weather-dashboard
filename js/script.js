@@ -65,7 +65,7 @@ function displayWeather(data) {
             if (i === 0) {
                 currentText = `
                     <div>
-                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
+                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
                     <p>${date.toDateString()}</p>
                     <p> Temp:&nbsp${temperature}&#176F</p>
                     <p> Humidity:&nbsp${humidity}%</p>
@@ -76,7 +76,7 @@ function displayWeather(data) {
                 } else {
                 fiveDayText = `
                     <div class="five-day-text">
-                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
+                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
                     <p>${date.toDateString()}</p>
                     <p> Temp:&nbsp${temperature}&#176F</p>
                     <p> Humidity:&nbsp${humidity}%</p>

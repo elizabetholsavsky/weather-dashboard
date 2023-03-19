@@ -31,9 +31,9 @@ aside {
 }
 
 .five-day-text {
+    background-color: rgba(170, 253, 253, 0.322);
     border: 1px solid hsl(0, 0%, 21%);
     border-radius: 5px;
-    background-color: transparent;
     padding: 15px;
     margin: 5px;
 }
