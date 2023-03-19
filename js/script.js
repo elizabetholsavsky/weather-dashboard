@@ -45,16 +45,16 @@ function searchWeatherApi(lat,lon) {
 };
 
 function displayWeather(data) {
-
+    console.log(data);
     let cityName = data.city.name;
 
-    function displayCityAndDate() {
-        let cityDate = (dayjs().format("MMMM D, YYYY"));
-        var cityNameDateText = document.getElementById("city-name-date");
-        cityNameDateText.innerHTML = cityName + "- " + cityDate;
+    function displayCity() {
+        var cityNameText = document.getElementById("city-name");
+        cityNameText.innerHTML = cityName;
     };
     
     function displayCurrentWeather() {
+        let date = new Date (data.list[0].dt*1000);
         let temperature = data.list[0].main.temp;
         let humidity = data.list[0].main.humidity;
         let windSpeed = data.list[0].wind.speed;
@@ -62,6 +62,7 @@ function displayWeather(data) {
         currentText = `
         <div>
         <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png">
+        <p>${date.toDateString()}</p>
         <p> Temp:&nbsp${temperature}&#176F</p>
         <p> Humidity:&nbsp${humidity}%</p>
         <p> Wind:&nbsp${windSpeed}mph</p>
@@ -74,15 +75,15 @@ function displayWeather(data) {
         // document.getElementById("five-day-forecast").innerHTML = "";
 
         for (var i = 0; i < data.list.length; i += 8) {
-            let iDate = data.list[i].dt_txt;
+            let iDate = new Date (data.list[i].dt*1000);
             let iTemperature = data.list[i].main.temp;
             let iHumidity = data.list[i].main.humidity;
             let iWindSpeed = data.list[i].wind.speed;
 
             fiveDayText = `
                 <div class="five-day-text">
-                <p>${iDate}</p>
                 <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
+                <p>${iDate.toDateString()}</p>
                 <p> Temp:&nbsp${iTemperature}&#176F</p>
                 <p> Humidity:&nbsp${iHumidity}%</p>
                 <p> Wind:&nbsp${iWindSpeed}mph</p>
@@ -93,7 +94,7 @@ function displayWeather(data) {
         currentWeatherReport = currentText + fiveDayText
     };
 
-    displayCityAndDate();
+    displayCity();
     displayCurrentWeather();
     displayFiveDayForecast();
 
