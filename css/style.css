@@ -8,17 +8,16 @@ aside {
     text-align: center;
 } 
 
-#current-weather-container {
-    background-color: hsla(171, 100%, 41%, 0.479);
-}
-
-.searched-cities-btn {
-    width: 100%;
+#input, .searched-cities-btn {
+    width: 85%;
     margin: 0.5rem;
 } 
 
-.icon {
-    font-size: 2rem;
+#current-container {
+    border: 1px solid hsl(0, 0%, 21%);
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 5px;
 }
 
 .five-day-card {
@@ -27,19 +26,16 @@ aside {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: hsla(171, 100%, 41%, 0.253);
     border-radius: 5px;
     width: auto;
-    margin: 1px;
 }
 
 .five-day-text {
-    min-width: 165px;
-    padding: 5px;
-}
-
-h3 {
-    width: 100%;
+    border: 1px solid hsl(0, 0%, 21%);
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 15px;
+    margin: 5px;
 }
 
 .fontAwesome {

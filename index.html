@@ -23,7 +23,6 @@
         <section class="hero is-dark">
             <div class="hero-body">
                 <h1 class="title is-2 has-text-centered">Weather Dashboard</h1>
-                <p class="title is-4 has-text-centered"></p>
             </div>
         </section>
     </header>
@@ -33,46 +32,43 @@
     <div class="columns">
     
         <aside class="column is-3">
-            <form  class="container">
-                <div class="notification is-light p-4 m-2">
-                    <!-- input label -->
-                    <p class="title is-4 m-2 has-text-centered">City Search</p>
-                    <label alt="Search for a city"></label>
-                    <!-- input field -->
-                    <input id="input" class="fontAwesome input is-primary is-rounded has-text-centered" type="text" placeholder="&#xf002"
-                    type="text">
-                    <!-- submit button -->
-                    <input class="button is-primary is-medium is-rounded m-2" id="submit-btn" type="submit">
-                </div>
+            <form class="container">
+                <div class="notification is-light p-0">
+                    <div class="p-5">
+                        <!-- input label -->
+                        <p class="title is-4 mb-2 has-text-centered">City Search</p>
+                        <label alt="Search for a city"></label>
+                        <!-- input field -->
+                        <input id="input" class="fontAwesome input is-primary-light is-rounded has-text-centered" type="text" placeholder="&#xf002"
+                        type="text">
+                        <!-- submit button -->
+                        <input class="button is-dark is-medium is-rounded m-2" id="submit-btn" type="submit">
+                        </div>
 
-                <div class="container is-fluid">
-                    <!-- clear searches button -->
-                    <button class="searched-cities-btn button is-primary is-outlined">Clear Searches</button>
-                    <button class="searched-cities-btn button is-primary is-outlined" id="searched-cities"></button>  
+                        <div>
+                        <!-- city searches -->
+                        <button class="searched-cities-btn button is-dark" id="searched-cities"></button>
+                        </div>
                 </div>
-                    
-                
-
             </form>
         </aside>
 
         <!-- weather forecasts -->
-        <div class="column is-9" id="weather-forecasts">
+        <div class="column is-9">
 
             <!-- current weather -->
             <section class="container is-fluid">
-                <h2 class="title is-4 mt-4 mr-2 mb-2" id="city-name">Current Forecast:</h2>
-                <div class="notification is-light mt-3 has-text-centered" id="current-weather-container">
+                <h2 class="title is-4 mt-5 mr-2 mb-2" id="city-name">Current Forecast</h2>
+                <div class="notification is-light mt-3 has-text-centered" id="current-container">
                     <p id="current-weather"></p>
                 </div>
             </section>
 
             <!-- future weather -->
-            <section>
-                <div class="container is-fluid">
-                    <h3 class="title is-4 mt-4 mr-2 mb-2">Future Forecast:</h3> 
-                    <div id="five-day-forecast" class="five-day-card has-text-centered"></div>   
-                </div>
+            <section class="container is-fluid">
+                <h2 class="title is-4 mt-4 mr-2 mb-2">Future Forecast</h2> 
+                <div id="five-day-forecast" class="five-day-card has-text-centered">
+                </div>   
             </section>
         </div>
     </div>

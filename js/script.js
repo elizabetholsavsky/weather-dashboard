@@ -45,6 +45,7 @@ function searchWeatherApi(lat,lon) {
         alert('There has been an error. Please try again.');
         console.log(error);
         });
+};
 
 function displayWeather(data) {
     let cityName = data.city.name;
@@ -89,13 +90,12 @@ function displayWeather(data) {
     };
 
     // save to local storage
-    function saveCitySearches() {
+    function saveSearches() {
     localStorage.setItem(cityName, currentWeatherReport);
-    let searchedCitiesData = localStorage.getItem(cityName);
+ 
     }
 
     displayCity();
     displayForecast();
-    saveCitySearches();
-};
+    saveSearches();
 };
