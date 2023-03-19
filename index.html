@@ -39,15 +39,16 @@
                     <p class="title is-4 m-2 has-text-centered">City Search</p>
                     <label alt="Search for a city"></label>
                     <!-- input field -->
-                    <input id="input" class="input is-primary is-rounded has-text-centered" type="text" placeholder="City Name"
+                    <input id="input" class="fontAwesome input is-primary is-rounded has-text-centered" type="text" placeholder="&#xf002"
                     type="text">
                     <!-- submit button -->
                     <input class="button is-primary is-medium is-rounded m-2" id="submit-btn" type="submit">
                 </div>
 
                 <div class="container is-fluid">
-                    <!-- placeholder searched city -->
-                    <button class="button is-primary is-outlined" id="searched-cities">Clear Searches</button> 
+                    <!-- clear searches button -->
+                    <button class="searched-cities-btn button is-primary is-outlined">Clear Searches</button>
+                    <button class="searched-cities-btn button is-primary is-outlined" id="searched-cities"></button>  
                 </div>
                     
                 
@@ -68,15 +69,14 @@
 
             <!-- future weather -->
             <section>
-                
                 <div class="container is-fluid">
                     <h3 class="title is-4 mt-4 mr-2 mb-2">Future Forecast:</h3> 
-                    <div id="five-day-forecast" class="five-day-card has-text-centered"></div>
-                    
+                    <div id="five-day-forecast" class="five-day-card has-text-centered"></div>   
                 </div>
             </section>
         </div>
     </div>
+
     <!-- dayJS -->
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./js/script.js"></script>
