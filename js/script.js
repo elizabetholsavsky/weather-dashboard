@@ -27,10 +27,9 @@ function saveSearches(userCityVal) {
         if (filteredData.length === 0) {
         localStorageData.push(userCityVal)  
         }
-        
-    }
+    };
     localStorage.setItem("city", JSON.stringify(localStorageData));
-    }
+    };
 
 // coordinate API 
 function searchCoordinatesApi(userCityVal) {
@@ -56,7 +55,8 @@ function searchWeatherApi(lat,lon) {
     fetch(weatherUrl)
     .then(response => response.json())
     .then(data => {
-        displayWeather(data);})
+        displayWeather(data);
+    })
     .catch(function (error) {
         alert('There has been an error. Please try again.');
         console.log(error);
@@ -66,6 +66,7 @@ function searchWeatherApi(lat,lon) {
 function displayWeather(data) {
 
     function displayCity() {
+        let cityName = data.city.name;
         let cityNameText = cityName;
         cityNameText = document.getElementById("city-name");
     };
@@ -103,39 +104,31 @@ function displayWeather(data) {
                     document.getElementById("five-day-forecast").innerHTML += fiveDayText;  
             }
         }
-        currentWeatherReport = currentText + fiveDayText
     };
-
-    // LOCAL STORAGE
-    // check local storage for saved cities
-    // save to local storage
-    // get cities from storage and create array of saved cities
-    // create button for saved city
-    // button displays data
-
 
     displayCity();
     displayForecast();
-};
 
-function populateSearchHistory() {
-    document.getElementById('search-history').innerHTML = ""
-    let localStorageData = JSON.parse(localStorage.getItem('city'));
-    let searchHistoryDiv = document.createElement('div');
-    if (localStorageData) {
-        for (let i = 0; i < localStorageData.length; i++) {
-            let historyBtn = document.createElement("button")
-        
-            historyBtn.innerHTML = localStorageData[i]
-            historyBtn.addEventListener("click", function(event){
-                event.preventDefault();
-                let cityName = event.target.innerHTML;
-                displayWeather(cityName);
-            })
-            searchHistoryDiv.append(historyBtn)
+    function populateSearchHistory() {
+        document.getElementById('search-history').innerHTML = "";
+        let localStorageData = JSON.parse(localStorage.getItem('city'));
+        let searchHistoryDiv = document.createElement('div');
+        if (localStorageData) {
+            for (let i = 0; i < localStorageData.length; i++) {
+                let historyBtn = document.createElement("button")
+                historyBtn.innerHTML = localStorageData[i]
+                historyBtn.addEventListener("click", function(event){
+                    event.preventDefault();
+                    let cityName = event.target.innerHTML;
+                    displayWeather(cityName);
+                })
+                searchHistoryDiv.append(historyBtn)
+            }
         }
-    }
-    document.getElementById('search-history').append(searchHistoryDiv);
+        document.getElementById('search-history').append(searchHistoryDiv);
+        };
+
+    populateSearchHistory();
 };
 
-populateSearchHistory();
+// populate history needs to be outside of displayWeather function to load on page opening
