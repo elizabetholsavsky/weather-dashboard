@@ -16,7 +16,7 @@ function submitBtnEvent(event) {
     searchCoordinatesApi(userCityVal);
 }
 
-// coordinate API
+// coordinate API 
 function searchCoordinatesApi(userCityVal) {
     var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + API_KEY
 
