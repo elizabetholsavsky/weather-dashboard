@@ -89,7 +89,13 @@ function displayWeather(data) {
         currentWeatherReport = currentText + fiveDayText
     };
 
+    // LOCAL STORAGE
+    // check local storage for saved cities
     // save to local storage
+    // get cities from storage and create array of saved cities
+    // create button for saved city
+    // button displays data
+
     function saveSearches() {
     localStorage.setItem(cityName, currentWeatherReport);
  
