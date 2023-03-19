@@ -5,12 +5,10 @@ var cityNameDateText = document.getElementById("city-name-date");
 var currentWeatherText = document.getElementById("current-weather");
 
 // click event to get userCity value
-
 submitBtn.addEventListener('click', submitBtnEvent);
 
 function submitBtnEvent(event) {
     event.preventDefault();
-
     var userCityVal = userCity.value;
 
     if (!userCityVal) {
@@ -22,34 +20,28 @@ function submitBtnEvent(event) {
 }
 
 // coordinate API
-
 function searchCoordinatesApi(userCityVal) {
     var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + API_KEY
 
     fetch(coordinatesUrl)
         .then(response => response.json())
-
         .then(data => {
             let lat = data[0].lat.toFixed(2);
             let lon = data[0].lon.toFixed(2);
-        searchWeatherApi(lat,lon);
+            searchWeatherApi(lat,lon);
         })
-
         .catch(function (error) {
             alert('There has been an error. Please try again.')
         });
 };
 
 // weather API
-
 function searchWeatherApi(lat,lon) {
     var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=imperial"
 
     fetch(weatherUrl)
     .then(response => response.json())
-
     .then(data => {
-        // console.log(data);
         displayWeather(data);
     });
 };
@@ -64,42 +56,31 @@ function displayWeather(data) {
     };
     
     function displayCurrentWeather() {
-        let weatherIcon = data.list[0].weather[0].icon;
-        let weatherIconUrl = "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png";
         let temperature = data.list[0].main.temp;
         let humidity = data.list[0].main.humidity;
         let windSpeed = data.list[0].wind.speed;
-
-        var currentWeatherIcon = '<img src="' + weatherIconUrl +'">'
-        var currentTemperature = '<p>Temperature: ' + temperature + ' ℉</p>';
-        var currentHumidity = '<p>Humidity: ' + humidity + '%</p>';
-        var currentWindSpeed = '<p>Wind Speed: ' + windSpeed + ' mph</p>';
-        var currentWeatherReport = currentWeatherIcon + currentTemperature + currentHumidity + currentWindSpeed;
-
-        currentWeatherText.innerHTML = currentWeatherReport;  
+    
+        currentText = `
+        <div class="current-weather">
+        <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png">
+        <p> Temp: <span class="fs-5 text">${temperature}&#176F</span></p>
+        <p> Humidity: <span class="fs-5 text">${humidity}%</span></p>
+        <p> Wind: <span class="fs-5 text">${windSpeed}mph</span></p>
+        </div>
+        `;  
+        document.getElementById("current-weather").innerHTML = currentText;
     };
 
     function displayFiveDayForecast() {
         document.getElementById("five-day-forecast").innerHTML = "";
-        var template = ``;
 
         for (var i = 0; i < data.list.length; i += 8) {
             let iDate = data.list[i].dt_txt;
-            let iWeatherIcon = data.list[i].weather[0].icon;
-            let iWeatherIconUrl = "https://openweathermap.org/img/wn/" + iWeatherIcon + "@2x.png";
             let iTemperature = data.list[i].main.temp;
             let iHumidity = data.list[i].main.humidity;
             let iWindSpeed = data.list[i].wind.speed;
-            
-            var futureDate = iDate;
-            var futureWeatherIcon = '<img src="' + iWeatherIconUrl +'">';
-            var futureTemperature = '<p>Temperature: ' + iTemperature + ' ℉</p>';
-            var futureHumidity = '<p>Humidity: ' + iHumidity + '%</p>';
-            var futureWindSpeed = '<p>Wind Speed: ' + iWindSpeed + ' mph</p>';
-            var fiveDayForecast = futureDate + futureWeatherIcon + futureTemperature + futureHumidity + futureWindSpeed;
-            // console.log(fiveDayForecast);
 
-            template = `
+            fiveDayText = `
                 <div class="five-day-text">
                 <p><span class="fs-5 text">${iDate}</span></p>
                 <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
@@ -108,9 +89,7 @@ function displayWeather(data) {
                 <p> Wind: <span class="fs-5 text">${iWindSpeed}mph</span></p>
                 </div>
                 `;
-
-        document.getElementById("five-day-forecast").innerHTML += template;
-
+                document.getElementById("five-day-forecast").innerHTML += fiveDayText;
         }
     };
 
