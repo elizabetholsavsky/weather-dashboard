@@ -8,13 +8,29 @@ var userCity = document.getElementById("input");
 function submitBtnEvent(event) {
     event.preventDefault();   
     var userCityVal = userCity.value;
-
+    saveSearches(userCityVal);
     if (!userCityVal) {
         alert('Please type a city name.');
         return;
     }
     searchCoordinatesApi(userCityVal);
 }
+
+function saveSearches(userCityVal) {
+    let localStorageData = JSON.parse(localStorage.getItem("city"));
+    if (localStorageData === null) {
+        localStorageData = []
+        localStorageData.push(userCityVal)
+    } else {
+        let filteredData = localStorageData.filter(data=>data.toLowerCase()===userCityVal.toLowerCase())
+        console.log(filteredData);
+        if (filteredData.length === 0) {
+        localStorageData.push(userCityVal)  
+        }
+        
+    }
+    localStorage.setItem("city", JSON.stringify(localStorageData));
+    }
 
 // coordinate API 
 function searchCoordinatesApi(userCityVal) {
@@ -48,14 +64,15 @@ function searchWeatherApi(lat,lon) {
 };
 
 function displayWeather(data) {
-    let cityName = data.city.name;
 
     function displayCity() {
-        var cityNameText = document.getElementById("city-name");
-        cityNameText.innerHTML = cityName;
+        let cityNameText = cityName;
+        cityNameText = document.getElementById("city-name");
     };
     
     function displayForecast() {
+        document.getElementById("current-weather").innerHTML = "";
+        document.getElementById("five-day-forecast").innerHTML = ""; 
         for (var i = 0; i < data.list.length; i += 7) {
             let date = new Date (data.list[i].dt*1000);
             let temperature = data.list[i].main.temp;
@@ -96,12 +113,29 @@ function displayWeather(data) {
     // create button for saved city
     // button displays data
 
-    function saveSearches() {
-    localStorage.setItem(cityName, currentWeatherReport);
- 
-    }
 
     displayCity();
     displayForecast();
-    saveSearches();
 };
+
+function populateSearchHistory() {
+    document.getElementById('search-history').innerHTML = ""
+    let localStorageData = JSON.parse(localStorage.getItem('city'));
+    let searchHistoryDiv = document.createElement('div');
+    if (localStorageData) {
+        for (let i = 0; i < localStorageData.length; i++) {
+            let historyBtn = document.createElement("button")
+        
+            historyBtn.innerHTML = localStorageData[i]
+            historyBtn.addEventListener("click", function(event){
+                event.preventDefault();
+                let cityName = event.target.innerHTML;
+                displayWeather(cityName);
+            })
+            searchHistoryDiv.append(historyBtn)
+        }
+    }
+    document.getElementById('search-history').append(searchHistoryDiv);
+};
+
+populateSearchHistory();
