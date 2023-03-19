@@ -21,18 +21,15 @@ aside {
 }
 
 .five-day-card {
-    background-color: hsla(171, 100%, 41%, 0.253);
-    border-radius: 5px;
-    width: 19%;
-    margin: 1px;
-}
-
-#card-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    background-color: hsla(171, 100%, 41%, 0.253);
+    border-radius: 5px;
+    width: auto;
+    margin: 1px;
 }
 
 h3 {

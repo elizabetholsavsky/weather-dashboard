@@ -22,8 +22,8 @@
     <header>
         <section class="hero is-dark">
             <div class="hero-body">
-                <h1 class="title is-2 has-text-centered" id="city-name">Weather Dashboard</h1>
-                <p class="title is-4 has-text-centered" id="city-date"></p>
+                <h1 class="title is-2 has-text-centered">Weather Dashboard</h1>
+                <p class="title is-4 has-text-centered"></p>
             </div>
         </section>
     </header>
@@ -47,7 +47,7 @@
 
                 <div class="container is-fluid">
                     <!-- placeholder searched city -->
-                    <button class="button is-primary is-outlined" id="searched-cities">Austin</button> 
+                    <button class="button is-primary is-outlined" id="searched-cities">Clear Searches</button> 
                 </div>
                     
                 
@@ -69,31 +69,19 @@
             </section>
 
             <!-- future weather -->
-            <section  id="five-day-forecast">
+            <section>
                 
-                <div class="container is-fluid" id="card-container">
+                <div class="container is-fluid">
                     <h3 class="title is-4 mt-4 mr-2 mb-2">Future Forecast:</h3> 
 
-                    <div class="five-day-card"></div>
-
-                    <div class="five-day-card"></div>
-
-                    <div class="five-day-card"></div>
-
-                    <div class="five-day-card"></div>
-
-                    <div class="five-day-card"></div>
+                    <div id="five-day-forecast" class="five-day-card has-text-centered"></div>
                     
                 </div>
             </section>
         </div>
     </div>
-
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-
+    <!-- dayJS -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 
