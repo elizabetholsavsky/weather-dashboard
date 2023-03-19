@@ -13,7 +13,6 @@ function submitBtnEvent(event) {
         alert('Please type a city name.');
         return;
     }
-
     searchCoordinatesApi(userCityVal);
 }
 
@@ -29,7 +28,8 @@ function searchCoordinatesApi(userCityVal) {
         searchWeatherApi(lat,lon);
     })
     .catch(function (error) {
-        alert('There has been an error. Please try again.')
+        alert('There has been an error. Please try again.');
+        console.log(error);
     });
 };
 
@@ -40,12 +40,13 @@ function searchWeatherApi(lat,lon) {
     fetch(weatherUrl)
     .then(response => response.json())
     .then(data => {
-        displayWeather(data);
-    });
-};
+        displayWeather(data);})
+    .catch(function (error) {
+        alert('There has been an error. Please try again.');
+        console.log(error);
+        });
 
 function displayWeather(data) {
-    console.log(data);
     let cityName = data.city.name;
 
     function displayCity() {
@@ -53,62 +54,48 @@ function displayWeather(data) {
         cityNameText.innerHTML = cityName;
     };
     
-    function displayCurrentWeather() {
-        let date = new Date (data.list[0].dt*1000);
-        let temperature = data.list[0].main.temp;
-        let humidity = data.list[0].main.humidity;
-        let windSpeed = data.list[0].wind.speed;
-    
-        currentText = `
-        <div>
-        <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png">
-        <p>${date.toDateString()}</p>
-        <p> Temp:&nbsp${temperature}&#176F</p>
-        <p> Humidity:&nbsp${humidity}%</p>
-        <p> Wind:&nbsp${windSpeed}mph</p>
-        </div>
-        `;  
-        document.getElementById("current-weather").innerHTML = currentText;
-    };
-
-    function displayFiveDayForecast() {
-        // document.getElementById("five-day-forecast").innerHTML = "";
-
-        for (var i = 0; i < data.list.length; i += 8) {
-            let iDate = new Date (data.list[i].dt*1000);
-            let iTemperature = data.list[i].main.temp;
-            let iHumidity = data.list[i].main.humidity;
-            let iWindSpeed = data.list[i].wind.speed;
-
-            fiveDayText = `
-                <div class="five-day-text">
-                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
-                <p>${iDate.toDateString()}</p>
-                <p> Temp:&nbsp${iTemperature}&#176F</p>
-                <p> Humidity:&nbsp${iHumidity}%</p>
-                <p> Wind:&nbsp${iWindSpeed}mph</p>
-                </div>
-                `;
-                document.getElementById("five-day-forecast").innerHTML += fiveDayText;
+    function displayForecast() {
+        for (var i = 0; i < data.list.length; i += 7) {
+            let date = new Date (data.list[i].dt*1000);
+            let temperature = data.list[i].main.temp;
+            let humidity = data.list[i].main.humidity;
+            let windSpeed = data.list[i].wind.speed;
+            
+            if (i === 0) {
+                currentText = `
+                    <div>
+                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
+                    <p>${date.toDateString()}</p>
+                    <p> Temp:&nbsp${temperature}&#176F</p>
+                    <p> Humidity:&nbsp${humidity}%</p>
+                    <p> Wind:&nbsp${windSpeed}mph</p>
+                    </div>
+                    `;  
+                    document.getElementById("current-weather").innerHTML = currentText;
+                } else {
+                fiveDayText = `
+                    <div class="five-day-text">
+                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
+                    <p>${date.toDateString()}</p>
+                    <p> Temp:&nbsp${temperature}&#176F</p>
+                    <p> Humidity:&nbsp${humidity}%</p>
+                    <p> Wind:&nbsp${windSpeed}mph</p>
+                    </div>
+                    `;
+                    document.getElementById("five-day-forecast").innerHTML += fiveDayText;  
+            }
         }
         currentWeatherReport = currentText + fiveDayText
     };
 
-    displayCity();
-    displayCurrentWeather();
-    displayFiveDayForecast();
-
     // save to local storage
-
     function saveCitySearches() {
     localStorage.setItem(cityName, currentWeatherReport);
-    
     let searchedCitiesData = localStorage.getItem(cityName);
     }
 
+    displayCity();
+    displayForecast();
     saveCitySearches();
-}
-
-// *********************************************************************************************************************
-
-// save to local storage, accessible though appended button under search bar
+};
+};
