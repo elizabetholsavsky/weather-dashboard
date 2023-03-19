@@ -100,7 +100,7 @@ function displayWeather(data) {
             // console.log(fiveDayForecast);
 
             template = `
-                <div>
+                <div class="five-day-text">
                 <p><span class="fs-5 text">${iDate}</span></p>
                 <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png">
                 <p> Temp: <span class="fs-5 text">${iTemperature}&#176F</span></p>

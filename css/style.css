@@ -32,12 +32,18 @@ aside {
     margin: 1px;
 }
 
+.five-day-text {
+    min-width: 165px;
+    padding: 5px;
+}
+
 h3 {
     width: 100%;
 }
 
-@media screen and (max-width: 1000px) {
-    .five-day-card {
+@media screen and (max-width: 1270px) {
+    .five-day-text {
+        display: block;
         width: 100%;  
     }
 }
