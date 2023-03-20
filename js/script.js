@@ -1,6 +1,6 @@
 const API_KEY = "f18313f772d233d04e9c8cd53f36eff9";
 
-// click event to get userCity value
+// click event to get user input value
 var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener('click', submitBtnEvent);
 var userCity = document.getElementById("input");
@@ -16,7 +16,7 @@ function submitBtnEvent(event) {
     searchCoordinatesApi(userCityVal);
 }
 
-// save to local storage
+// save to input local storage
 function saveSearches(userCityVal) {
     let localStorageData = JSON.parse(localStorage.getItem("city"));
     if (localStorageData === null) {
@@ -64,12 +64,13 @@ function searchWeatherApi(lat,lon) {
         });
 };
 
+// display weather on page
 function displayWeather(data) {
-    // display name
+    // display city name
     let cityName = data.city.name;
     document.getElementById("city-name").innerHTML = cityName;
 
-    // display forecast
+    // display current and future forecast
     document.getElementById("current-weather").innerHTML = "";
     document.getElementById("five-day-forecast").innerHTML = ""; 
     for (var i = 0; i < data.list.length; i += 7) {
@@ -103,7 +104,7 @@ function displayWeather(data) {
             }
         }
 
-        // buttons show weather for city
+        // create buttons that show search history, display weather on click
         function populateSearchHistory() {
             document.getElementById('search-history').innerHTML = "";
             let localStorageData = JSON.parse(localStorage.getItem('city'));
@@ -128,8 +129,9 @@ function displayWeather(data) {
 
             populateSearchHistory();
     };    
-        // show Austin weather on page load
-        window.onload = function loadAustin() {
-            userCityVal = "Austin";
-            searchCoordinatesApi(userCityVal)
-        };
+
+// show Austin weather on page load
+window.onload = function loadAustin() {
+    userCityVal = "Austin";
+    searchCoordinatesApi(userCityVal)
+};
