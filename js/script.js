@@ -131,5 +131,6 @@ function displayWeather(data) {
     populateSearchHistory();
 };
 
+// **************************************************************************************************
 // populate history needs to be outside of displayWeather function to load on page opening
 // How can I get access to data to show on load?
