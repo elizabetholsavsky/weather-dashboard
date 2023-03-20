@@ -112,6 +112,7 @@ function displayWeather(data) {
             for (let i = 0; i < localStorageData.length; i++) {
                 let historyBtn = document.createElement("button")
                 historyBtn.innerHTML = localStorageData[i]
+                historyBtn.className = "searched-cities-btn button is-dark";
                 historyBtn.addEventListener("click", function(event){
                     event.preventDefault();
                     let cityName = event.target.innerHTML;
