@@ -1,6 +1,6 @@
 const API_KEY = "f18313f772d233d04e9c8cd53f36eff9";
 
-// click event to get userCity value
+// click event to get user input value
 var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener('click', submitBtnEvent);
 var userCity = document.getElementById("input");
@@ -16,6 +16,7 @@ function submitBtnEvent(event) {
     searchCoordinatesApi(userCityVal);
 }
 
+// save to input local storage
 function saveSearches(userCityVal) {
     let localStorageData = JSON.parse(localStorage.getItem("city"));
     if (localStorageData === null) {
@@ -63,12 +64,13 @@ function searchWeatherApi(lat,lon) {
         });
 };
 
+// display weather on page
 function displayWeather(data) {
-    // display name
+    // display city name
     let cityName = data.city.name;
     document.getElementById("city-name").innerHTML = cityName;
 
-    // display forecast
+    // display current and future forecast
     document.getElementById("current-weather").innerHTML = "";
     document.getElementById("five-day-forecast").innerHTML = ""; 
     for (var i = 0; i < data.list.length; i += 7) {
@@ -101,28 +103,35 @@ function displayWeather(data) {
                 document.getElementById("five-day-forecast").innerHTML += fiveDayText;  
             }
         }
-    };
 
-    function populateSearchHistory() {
-        document.getElementById('search-history').innerHTML = "";
-        let localStorageData = JSON.parse(localStorage.getItem('city'));
-        let searchHistoryDiv = document.createElement('div');
-
-        if (localStorageData) {
-            for (let i = 0; i < localStorageData.length; i++) {
-                let historyBtn = document.createElement("button")
-                historyBtn.innerHTML = localStorageData[i]
-                historyBtn.className = "searched-cities-btn button is-dark";
-                historyBtn.addEventListener("click", function(event){
-                    event.preventDefault();
-                    let cityName = event.target.innerHTML;
-                    displayWeather(cityName);
-                })
-                searchHistoryDiv.append(historyBtn)
-            }
-        }
-
-        document.getElementById('search-history').append(searchHistoryDiv);
-        };
+        // create buttons that show search history, display weather on click
+        function populateSearchHistory() {
+            document.getElementById('search-history').innerHTML = "";
+            let localStorageData = JSON.parse(localStorage.getItem('city'));
+            let searchHistoryDiv = document.createElement('div');
     
-        populateSearchHistory();
+            if (localStorageData) {
+                for (let i = 0; i < localStorageData.length; i++) {
+                    let historyBtn = document.createElement("button")
+                    historyBtn.innerHTML = localStorageData[i]
+                    historyBtn.className = "searched-cities-btn button is-dark";
+                    historyBtn.addEventListener("click", function(event){
+                        event.preventDefault();
+                        let cityName = event.target.innerHTML;
+                        searchCoordinatesApi(cityName);
+                    })
+                    searchHistoryDiv.append(historyBtn)
+                }
+            }
+
+            document.getElementById('search-history').append(searchHistoryDiv);
+            };
+
+            populateSearchHistory();
+    };    
+
+// show Austin weather on page load
+window.onload = function loadAustin() {
+    userCityVal = "Austin";
+    searchCoordinatesApi(userCityVal)
+};
