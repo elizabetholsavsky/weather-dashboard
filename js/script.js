@@ -8,25 +8,32 @@ var userCity = document.getElementById("input");
 function submitBtnEvent(event) {
     event.preventDefault();   
     var userCityVal = userCity.value;
-    saveSearches(userCityVal);
+
+    // format user input (capital letter then all lowercase)
+    userCityValLower = userCityVal.toLowerCase();
+    userCityValCap= userCityValLower[0].toUpperCase();
+    userCityValLower = userCityValLower.slice(1);
+    let formattedInput = userCityValCap + userCityValLower
+
     if (!userCityVal) {
         alert('Please type a city name.');
         return;
+    } else {
+        saveSearches(formattedInput);
     }
     searchCoordinatesApi(userCityVal);
 }
 
 // save to input local storage
-function saveSearches(userCityVal) {
+function saveSearches(formattedInput) {
     let localStorageData = JSON.parse(localStorage.getItem("city"));
     if (localStorageData === null) {
         localStorageData = []
-        localStorageData.push(userCityVal)
+        localStorageData.push(formattedInput)
     } else {
-        let filteredData = localStorageData.filter(data=>data.toLowerCase()===userCityVal.toLowerCase())
-        console.log(filteredData);
+        let filteredData = localStorageData.filter(data=>data.toLowerCase()===formattedInput.toLowerCase())
         if (filteredData.length === 0) {
-        localStorageData.push(userCityVal)  
+        localStorageData.push(formattedInput)  
         }
     };
     localStorage.setItem("city", JSON.stringify(localStorageData));
@@ -66,6 +73,7 @@ function searchWeatherApi(lat,lon) {
 
 // display weather on page
 function displayWeather(data) {
+
     // display city name
     let cityName = data.city.name;
     document.getElementById("city-name").innerHTML = cityName;
