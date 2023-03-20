@@ -4,6 +4,10 @@
 
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+body {
+    background-color: hsl(0, 0%, 96%);
+}
+
 aside {
     text-align: center;
 } 
@@ -21,7 +25,7 @@ aside {
 #current-weather {
     border: 1px solid hsl(0, 0%, 21%);
     border-radius: 5px;
-    background-color: transparent;
+    background-color: white;
     margin: 5px;
 }
 
