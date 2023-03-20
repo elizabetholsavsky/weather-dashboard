@@ -18,7 +18,7 @@ aside {
     font-size: 1rem;
 }
 
-#current-container {
+#current-weather {
     border: 1px solid hsl(0, 0%, 21%);
     border-radius: 5px;
     background-color: transparent;
@@ -39,15 +39,16 @@ aside {
     background-color: rgba(170, 253, 253, 0.322);
     border: 1px solid hsl(0, 0%, 21%);
     border-radius: 5px;
-    padding: 15px;
+    padding: 20px;
     margin: 5px;
+    min-width: 225px;
 }
 
 .fontAwesome {
     font-family: 'poppins', FontAwesome, sans-serif;
     }
 
-@media screen and (max-width: 1270px) {
+@media screen and (max-width: 1680px) {
     .five-day-text {
         display: block;
         width: 100%;  
