@@ -8,6 +8,10 @@ aside {
     text-align: center;
 } 
 
+body {
+    background-color: hsl(0, 0%, 96%);
+}
+
 #input, .searched-cities-btn {
     width: 85%;
     margin: 0.5rem;
@@ -20,8 +24,8 @@ aside {
 
 #current-weather {
     border: 1px solid hsl(0, 0%, 21%);
+    background-color: white;
     border-radius: 5px;
-    background-color: transparent;
     margin: 5px;
 }
 
