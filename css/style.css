@@ -13,6 +13,11 @@ aside {
     margin: 0.5rem;
 } 
 
+#submit-btn, .searched-cities-btn {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
 #current-container {
     border: 1px solid hsl(0, 0%, 21%);
     border-radius: 5px;
