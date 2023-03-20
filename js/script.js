@@ -64,55 +64,50 @@ function searchWeatherApi(lat,lon) {
 };
 
 function displayWeather(data) {
+    // display name
+    let cityName = data.city.name;
+    document.getElementById("city-name").innerHTML = cityName;
 
-    function displayCity() {
-        let cityName = data.city.name;
-        let cityNameText = cityName;
-        cityNameText = document.getElementById("city-name");
-    };
-    
-    function displayForecast() {
-        document.getElementById("current-weather").innerHTML = "";
-        document.getElementById("five-day-forecast").innerHTML = ""; 
-        for (var i = 0; i < data.list.length; i += 7) {
-            let date = new Date (data.list[i].dt*1000);
-            let temperature = data.list[i].main.temp;
-            let humidity = data.list[i].main.humidity;
-            let windSpeed = data.list[i].wind.speed;
+    // display forecast
+    document.getElementById("current-weather").innerHTML = "";
+    document.getElementById("five-day-forecast").innerHTML = ""; 
+    for (var i = 0; i < data.list.length; i += 7) {
+        let date = new Date (data.list[i].dt*1000);
+        let temperature = data.list[i].main.temp;
+        let humidity = data.list[i].main.humidity;
+        let windSpeed = data.list[i].wind.speed;
             
-            if (i === 0) {
-                currentText = `
-                    <div>
-                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
-                    <p>${date.toDateString()}</p>
-                    <p> Temp:&nbsp${temperature}&#176F</p>
-                    <p> Humidity:&nbsp${humidity}%</p>
-                    <p> Wind:&nbsp${windSpeed}mph</p>
-                    </div>
-                    `;  
-                    document.getElementById("current-weather").innerHTML = currentText;
-                } else {
-                fiveDayText = `
-                    <div class="five-day-text">
-                    <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
-                    <p>${date.toDateString()}</p>
-                    <p> Temp:&nbsp${temperature}&#176F</p>
-                    <p> Humidity:&nbsp${humidity}%</p>
-                    <p> Wind:&nbsp${windSpeed}mph</p>
-                    </div>
-                    `;
-                    document.getElementById("five-day-forecast").innerHTML += fiveDayText;  
+        if (i === 0) {
+            currentText = `
+                <div>
+                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <p>${date.toDateString()}</p>
+                <p> Temp:&nbsp${temperature}&#176F</p>
+                <p> Humidity:&nbsp${humidity}%</p>
+                <p> Wind:&nbsp${windSpeed}mph</p>
+                </div>
+                `;  
+                document.getElementById("current-weather").innerHTML = currentText;
+        } else {
+            fiveDayText = `
+                <div class="five-day-text">
+                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <p>${date.toDateString()}</p>
+                <p> Temp:&nbsp${temperature}&#176F</p>
+                <p> Humidity:&nbsp${humidity}%</p>
+                <p> Wind:&nbsp${windSpeed}mph</p>
+                </div>
+                `;
+                document.getElementById("five-day-forecast").innerHTML += fiveDayText;  
             }
         }
     };
-
-    displayCity();
-    displayForecast();
 
     function populateSearchHistory() {
         document.getElementById('search-history').innerHTML = "";
         let localStorageData = JSON.parse(localStorage.getItem('city'));
         let searchHistoryDiv = document.createElement('div');
+
         if (localStorageData) {
             for (let i = 0; i < localStorageData.length; i++) {
                 let historyBtn = document.createElement("button")
@@ -125,12 +120,8 @@ function displayWeather(data) {
                 searchHistoryDiv.append(historyBtn)
             }
         }
+
         document.getElementById('search-history').append(searchHistoryDiv);
         };
-
-    populateSearchHistory();
-};
-
-// **************************************************************************************************
-// populate history needs to be outside of displayWeather function to load on page opening
-// How can I get access to data to show on load?
+    
+        populateSearchHistory();
