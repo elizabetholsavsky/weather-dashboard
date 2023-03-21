@@ -4,13 +4,14 @@
 
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+html, body {
+    background-color: hsl(0, 0%, 96%);
+    height: 100%;
+}
+
 aside {
     text-align: center;
 } 
-
-body {
-    background-color: hsl(0, 0%, 96%);
-}
 
 #input, .searched-cities-btn {
     width: 85%;

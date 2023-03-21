@@ -2,15 +2,23 @@
 
 ## Description
 
-text
+This weather dashboard fetches current and future weather conditions for the user's desired city using the Open Weather API:
+
+Link
+
+Screenshot
 
 ## Usage
 
-text
+Type your desired city into the search text field. You will be presented with the current weather as well as a five day forcast for that city. Your search history is saved to local storage and can be accessed again by clicking the button with the city name. 
 
 ## Credits
 
-text
+This website was created using the Open Weather API and Bulma CSS framework.
+
+Open Weather API: https://openweathermap.org/forecast5
+
+Bulma CSS Framework: https://bulma.io/
 
 ## License
 
