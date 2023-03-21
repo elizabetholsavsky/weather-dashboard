@@ -6,7 +6,7 @@ This weather dashboard fetches current and future weather conditions for the use
 
 https://elizabetholsavsky.github.io/weather-dashboard/
 
-![weather-dashboard-screenshot](https://user-images.githubusercontent.com/116515976/226509609-549e5afa-8c02-4ba2-b0cb-02edad71eca9.png)
+![weather-dashboard-screenshot](https://user-images.githubusercontent.com/116515976/226751105-9307727f-7494-4fd0-beae-edfd959e22f4.png)
 
 ## Usage
 
