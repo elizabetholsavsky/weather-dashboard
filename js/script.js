@@ -82,7 +82,7 @@ function displayWeather(data) {
     document.getElementById("five-day-forecast").innerHTML = "";
     for (var i = 0; i < data.list.length; i += 7) {
         let date = new Date(data.list[i].dt * 1000);
-        let temperature = data.list[i].main.temp;
+        let temperature = Math.round(data.list[i].main.temp);
         let humidity = data.list[i].main.humidity;
         let windSpeed = data.list[i].wind.speed;
 
