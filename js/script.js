@@ -40,7 +40,7 @@ function saveSearches(formattedInput) {
 
 // coordinate API 
 function searchCoordinatesApi(userCityVal) {
-    var coordinatesUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + API_KEY
+    var coordinatesUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + userCityVal + "&limit=1&appid=" + API_KEY
 
     fetch(coordinatesUrl)
         .then(response => response.json())
@@ -57,7 +57,7 @@ function searchCoordinatesApi(userCityVal) {
 
 // weather API
 function searchWeatherApi(lat, lon) {
-    var weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=imperial"
+    var weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY + "&units=imperial"
 
     fetch(weatherUrl)
         .then(response => response.json())
