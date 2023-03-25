@@ -13,11 +13,9 @@ function submitBtnEvent(event) {
         alert('Please type a city name.');
         return;
     } else {
-        // format user input
-        userCityValLower = userCityVal.toLowerCase();
-        userCityValCap = userCityValLower[0].toUpperCase();
-        userCityValLower = userCityValLower.slice(1);
-        let formattedInput = userCityValCap + userCityValLower
+        // format user input (uppercase first letter of each word using RegEx)
+        userCityVal = userCityVal.toLowerCase();
+        const formattedInput = userCityVal.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
         saveSearches(formattedInput);
     }
     searchCoordinatesApi(userCityVal);
