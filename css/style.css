@@ -29,8 +29,9 @@ aside {
 }
 
 #current-weather {
-    border: 1px solid hsl(0, 0%, 21%);
-    background-color: white;
+    border: 1px solid transparent;
+    background-color: hsl(40, 96%, 83%);
+    color: hsl(0, 0%, 21%);
     border-radius: 5px;
     margin: 5px;
 }
@@ -46,8 +47,9 @@ aside {
 }
 
 .five-day-text {
-    background-color: rgba(170, 253, 253, 0.322);
-    border: 1px solid hsl(0, 0%, 21%);
+    background-color: hsl(40, 47%, 70%);
+    border: 1px solid transparent;
+    color: hsl(0, 0%, 21%);
     border-radius: 5px;
     padding: 20px;
     margin: 5px;
