@@ -4,6 +4,8 @@ const API_KEY = "f18313f772d233d04e9c8cd53f36eff9";
 var submitBtn = document.getElementById("submit-btn");
 submitBtn.addEventListener('click', submitBtnEvent);
 var userCity = document.getElementById("input");
+let clearBtn = document.getElementById("clear-history");
+clearBtn.addEventListener('click', clearHistory);
 
 function submitBtnEvent(event) {
     event.preventDefault();
@@ -17,9 +19,20 @@ function submitBtnEvent(event) {
         userCityVal = userCityVal.toLowerCase();
         const formattedInput = userCityVal.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
         saveSearches(formattedInput);
+        // show btn after saved to local storage
+        populateSearchHistory();
+        document.getElementById('input').value = null;
     }
+
     searchCoordinatesApi(userCityVal);
 };
+
+function clearHistory(event) {
+    event.preventDefault();
+    localStorage.removeItem('city');
+    // clear btn showing on page (no data in local storage)
+    populateSearchHistory();
+}
 
 // save to input local storage
 function saveSearches(formattedInput) {
@@ -61,6 +74,7 @@ function searchWeatherApi(lat, lon) {
         .then(response => response.json())
         .then(data => {
             displayWeather(data);
+            console.log(data);
         })
         .catch(function (error) {
             alert('There has been an error. Please try again.');
@@ -78,16 +92,23 @@ function displayWeather(data) {
     // display current and future forecast
     document.getElementById("current-weather").innerHTML = "";
     document.getElementById("five-day-forecast").innerHTML = "";
-    for (var i = 0; i < data.list.length; i += 7) {
-        let date = new Date(data.list[i].dt * 1000);
-        let temperature = Math.round(data.list[i].main.temp);
-        let humidity = data.list[i].main.humidity;
-        let windSpeed = data.list[i].wind.speed;
+    for (var i = -1; i <= data.list.length; i += 8) {
+        console.log(i);
+        let index;
+        if (i === -1) {
+            index = i + 1
+        } else {
+            index = i
+        }
+        let date = new Date(data.list[index].dt * 1000);
+        let temperature = Math.round(data.list[index].main.temp);
+        let humidity = data.list[index].main.humidity;
+        let windSpeed = data.list[index].wind.speed;
 
-        if (i === 0) {
+        if (i === -1) {
             currentText = `
                 <div>
-                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <img src="https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png" alt="weather icon">
                 <p>${date.toDateString()}</p>
                 <p> Temp:&nbsp${temperature}&#176F</p>
                 <p> Humidity:&nbsp${humidity}%</p>
@@ -96,9 +117,11 @@ function displayWeather(data) {
                 `;
             document.getElementById("current-weather").innerHTML = currentText;
         } else {
+            console.log(index)
+            fiveDayText = ''
             fiveDayText = `
                 <div class="five-day-text">
-                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <img src="https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png" alt="weather icon">
                 <p>${date.toDateString()}</p>
                 <p> Temp:&nbsp${temperature}&#176F</p>
                 <p> Humidity:&nbsp${humidity}%</p>
@@ -108,34 +131,37 @@ function displayWeather(data) {
             document.getElementById("five-day-forecast").innerHTML += fiveDayText;
         }
     }
-
-    // create buttons that show search history, display weather on click
-    function populateSearchHistory() {
-        document.getElementById('search-history').innerHTML = "";
-        let localStorageData = JSON.parse(localStorage.getItem('city'));
-        let searchHistoryDiv = document.createElement('div');
-
-        if (localStorageData) {
-            for (let i = 0; i < localStorageData.length; i++) {
-                let historyBtn = document.createElement("button")
-                historyBtn.innerHTML = localStorageData[i]
-                historyBtn.className = "searched-cities-btn button is-dark";
-                historyBtn.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    let cityName = event.target.innerHTML;
-                    searchCoordinatesApi(cityName);
-                })
-                searchHistoryDiv.append(historyBtn)
-            }
-        }
-
-        document.getElementById('search-history').append(searchHistoryDiv);
-    };
-    populateSearchHistory();
 };
+
+
+// create buttons that show search history, display weather on click
+function populateSearchHistory() {
+    document.getElementById('search-history').innerHTML = "";
+    let localStorageData = JSON.parse(localStorage.getItem('city'));
+    let searchHistoryDiv = document.createElement('div');
+
+    if (localStorageData) {
+        for (let i = 0; i < localStorageData.length; i++) {
+            let historyBtn = document.createElement("button")
+            historyBtn.innerHTML = localStorageData[i]
+            historyBtn.className = "searched-cities-btn button is-dark";
+            historyBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                let cityName = event.target.innerHTML;
+                searchCoordinatesApi(cityName);
+            })
+            searchHistoryDiv.append(historyBtn)
+        }
+    }
+
+    document.getElementById('search-history').append(searchHistoryDiv);
+};
+// show btn on refresh
+populateSearchHistory();
 
 // show Austin weather on page load
 window.onload = function loadAustin() {
     userCityVal = "Austin";
     searchCoordinatesApi(userCityVal)
+    // populateSearchHistory();
 };
