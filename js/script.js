@@ -17,7 +17,10 @@ function submitBtnEvent(event) {
         userCityVal = userCityVal.toLowerCase();
         const formattedInput = userCityVal.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
         saveSearches(formattedInput);
+
+        document.getElementById('input').value = null;
     }
+
     searchCoordinatesApi(userCityVal);
 };
 
