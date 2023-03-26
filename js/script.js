@@ -92,16 +92,23 @@ function displayWeather(data) {
     // display current and future forecast
     document.getElementById("current-weather").innerHTML = "";
     document.getElementById("five-day-forecast").innerHTML = "";
-    for (var i = 0; i <= data.list.length; i += 7) {
-        let date = new Date(data.list[i].dt * 1000);
-        let temperature = Math.round(data.list[i].main.temp);
-        let humidity = data.list[i].main.humidity;
-        let windSpeed = data.list[i].wind.speed;
+    for (var i = -1; i <= data.list.length; i += 8) {
+        console.log(i);
+        let index;
+        if (i === -1) {
+            index = i + 1
+        } else {
+            index = i
+        }
+        let date = new Date(data.list[index].dt * 1000);
+        let temperature = Math.round(data.list[index].main.temp);
+        let humidity = data.list[index].main.humidity;
+        let windSpeed = data.list[index].wind.speed;
 
-        if (i === 0) {
+        if (i === -1) {
             currentText = `
                 <div>
-                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <img src="https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png" alt="weather icon">
                 <p>${date.toDateString()}</p>
                 <p> Temp:&nbsp${temperature}&#176F</p>
                 <p> Humidity:&nbsp${humidity}%</p>
@@ -110,11 +117,11 @@ function displayWeather(data) {
                 `;
             document.getElementById("current-weather").innerHTML = currentText;
         } else {
-            console.log(i)
+            console.log(index)
             fiveDayText = ''
             fiveDayText = `
                 <div class="five-day-text">
-                <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" alt="weather icon">
+                <img src="https://openweathermap.org/img/wn/${data.list[index].weather[0].icon}@2x.png" alt="weather icon">
                 <p>${date.toDateString()}</p>
                 <p> Temp:&nbsp${temperature}&#176F</p>
                 <p> Humidity:&nbsp${humidity}%</p>
