@@ -1,13 +1,13 @@
 # Weather Dashboard
+https://elizabetholsavsky.github.io/weather-dashboard/
 
 ## Description
 
 This weather dashboard fetches current and future weather conditions for the user's desired city using the Open Weather API:
 
-https://elizabetholsavsky.github.io/weather-dashboard/
-
 ![weather-screenshot](https://user-images.githubusercontent.com/116515976/227744024-14888c5c-acce-4506-b9c8-f7ad60045e96.png)
 
+## Table of Contents
 * [Usage](#usage)
 * [Contributing](#contributing)
 * [License](#license)
