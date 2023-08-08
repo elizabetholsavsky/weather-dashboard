@@ -1,5 +1,9 @@
-# Weather Dashboard
-https://elizabetholsavsky.github.io/weather-dashboard/
+<div align="center">
+  
+  # Weather Dashboard
+  https://elizabetholsavsky.github.io/weather-dashboard/
+
+</div>
 
 ## Description
 
